@@ -1,0 +1,203 @@
+/* Colours and spacing: one accent (copper), navy and white neutrals, one spacing scale */
+:root {
+  --ink: #0B1F3A;
+  --soft: #3D4B63;
+  --white: #FFFFFF;
+  --on-dark: #D5DAE3;
+  --line: #D5DAE3;
+  --accent: #D59F7B;
+  --s1: 8px;
+  --s2: 24px;
+  --s3: 40px;
+  --edge: 24px;
+  --measure: 68ch;
+}
+
+/* Page base: body text, links, headings */
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: "Lora", Georgia, serif;
+  color: var(--ink);
+  line-height: 1.25;
+}
+h1 { font-size: 2.75rem; margin: 0 0 var(--s1); }
+h2 { font-size: 1.75rem; margin: 0 0 var(--s2); }
+h3 { font-size: 1.15rem; margin: 0 0 var(--s1); }
+p { max-width: var(--measure); margin: 0 0 var(--s2); }
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+a:hover { color: var(--soft); text-decoration-color: var(--ink); }
+a:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Navigation bar (flexbox), sticky at the top */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding: var(--s1) var(--edge);
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.nav-brand {
+  font-family: "Lora", Georgia, serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.nav-links { display: flex; gap: var(--s1); margin-left: auto; }
+.nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  text-decoration: none;
+  color: var(--soft);
+}
+.nav-link:hover { color: var(--ink); }
+
+/* Buttons: copper fill with navy text, outline for the second action */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--s2);
+  background: var(--accent);
+  color: var(--ink);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.button:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.button-outline { background: var(--white); border-color: var(--ink); }
+.button-row { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s2); margin-bottom: var(--s1); }
+.note { color: var(--soft); font-size: 0.95rem; margin-bottom: var(--s2); }
+
+/* Sections: shared spacing, and .dark for the navy sections */
+section, .resume-area {
+  padding: 56px max(var(--edge), calc((100% - 1000px) / 2));
+  scroll-margin-top: 60px;
+}
+.dark { background: var(--ink); color: var(--white); }
+.dark h1, .dark h2, .dark a { color: var(--white); }
+.dark a:hover { color: var(--on-dark); }
+.dark .location, .dark .note { color: var(--on-dark); }
+.dark .card { color: var(--ink); }
+.dark a:focus-visible, .dark .button:focus-visible { outline-color: var(--white); }
+.dark .button { color: var(--ink); }
+.dark .button-outline { background: transparent; color: var(--white); border-color: var(--white); }
+.dark .button:hover { background: var(--white); border-color: var(--white); color: var(--ink); }
+
+/* Hero (#hero): name, one-liner, goal and buttons */
+#hero { padding-top: 80px; padding-bottom: 80px; }
+.location { color: var(--soft); font-size: 1.05rem; }
+.lead {
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+.goal { font-weight: 600; }
+
+/* Cards: flat grid items with a thin full outline, no shadow */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s2);
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: var(--s2);
+}
+.card p { margin-bottom: var(--s1); }
+.card ul { margin: var(--s1) 0 0; padding-left: 20px; }
+.card li { margin-bottom: var(--s1); }
+.meta { color: var(--soft); font-size: 0.95rem; }
+
+/* Education (#education) and skills (#skills): list with proof */
+.skill-list { list-style: none; margin: 0; padding: 0; }
+.skill-list li {
+  max-width: var(--measure);
+  margin: 0 0 var(--s2);
+}
+
+/* Contact (#contact): closing strip with the two email buttons */
+#contact p { margin-bottom: var(--s1); }
+
+/* Paper resume (#resume): white sheet like a one-page document */
+.download { margin-bottom: var(--s2); font-weight: 600; }
+#resume {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: var(--s3);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+#resume p { margin-bottom: var(--s1); }
+#resume h2 { margin-bottom: var(--s1); font-size: 1.75rem; }
+#resume h3 {
+  margin: var(--s2) 0 var(--s1);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.05rem;
+}
+#resume ul { margin: 0 0 var(--s1); padding-left: 20px; }
+#resume li { margin-bottom: 4px; }
+.resume-role { margin-top: var(--s1); }
+.resume-profile { margin-top: var(--s2); }
+
+/* Small screens: under 700px, tighter edges and wrapping nav */
+@media (max-width: 700px) {
+  :root { --edge: 16px; }
+  h1 { font-size: 2.1rem; }
+  .nav { flex-wrap: wrap; }
+  .nav-links { order: 3; width: 100%; margin-left: 0; overflow-x: auto; }
+  .grid { grid-template-columns: 1fr; }
+  section, .resume-area { padding: var(--s3) var(--edge); }
+  #resume { padding: var(--s2) var(--edge); }
+}
+
+/* Print: show only the resume on one A4 page, black on white */
+@page { size: A4; margin: 12mm; }
+@media print {
+  .nav, main > section, .download { display: none; }
+  body, .resume-area { background: #fff; padding: 0; }
+  #resume { max-width: none; border: 0; padding: 0; margin: 0; font-size: 9.5pt; line-height: 1.35; }
+  #resume, #resume * { color: #000; }
+  #resume h2 { font-size: 18pt; }
+  #resume h3 { font-size: 11pt; margin-top: 10px; border-bottom-color: #000; }
+}
+
+/* Reduced motion: turn off the colour transitions */
+@media (prefers-reduced-motion: reduce) {
+  a, .button { transition: none; }
+}
